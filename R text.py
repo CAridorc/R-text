@@ -90,11 +90,12 @@ def add_date():
 def add_signature():
     try:
         with open("signature.txt") as f:
-            print(f.read())
-            if not any([i in f.read() for i in ALL_CHARS]): # is empty
+            data = f.read()
+            print(data)
+            if not any([i in data for i in ALL_CHARS]): # is empty
                 pop_up.showerror("\"signature.txt\" is empty.","Please write your signature to that file.")
                 return 1
-            main_text.insert(tk.INSERT, "\n" + f.read(), "a")
+            main_text.insert(tk.INSERT, "\n" + data, "a")
     except IOError:
         MESSAGE = SIGNATURE_TXT_NOT_FOUND_MESSAGE
         pop_up.showerror("\"signature.txt\" not found.", MESSAGE)
