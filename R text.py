@@ -28,26 +28,12 @@ SAVING_SUCCESS_MESSAGE = "Your text is now stored in the {filename} file"
 
 
 def _open():
-    try:
-        title = file_title.get()
-    except UnicodeEncodeError:
-        pop_up.showerror("Invalid characters",INVALID_CHRACTERS_MESSAGE)
-        return 1
-        
-    if not title:
-        pop_up.showerror("Title is empty.", EMPTY_TITLE_ERROR_MESSAGE_OPEN)
-        return 1
-
-    if not TXT_EXTENSION in title:
-        filename = title + TXT_EXTENSION
-
-    try:
-        with open(filename) as f:
-            main_text.delete("1.0", tk.END)
-            main_text.insert(tk.INSERT, f.read(), "a")
-    except IOError:
-        MESSAGE = "Please be sure that the file you want to open exists and that it is in the same folder of this editor."
-        pop_up.showerror("File not found.", FILE_NOT_FOUND_ERROR_MESSAGE)
+    filename = tkFileDialog.askopenfilename()
+    file_title.delete(0, tk.END)
+    file_title.insert(tk.INSERT, filename)
+    with open(filename) as f:
+        main_text.delete("1.0", tk.END)
+        main_text.insert(tk.INSERT, f.read(), "a")
 
 def list_files():
     files = '\n'.join([file for file in glob.glob("*.txt")])
