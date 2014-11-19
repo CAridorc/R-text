@@ -9,6 +9,8 @@ try:
 except:
     import tkinter.tkMessageBox as pop_up
 
+import tkFileDialog
+
 import datetime
 
 import glob
