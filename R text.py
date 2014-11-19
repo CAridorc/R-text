@@ -1,15 +1,14 @@
 # -*- coding: utf-8 -*-
-try:
-    import tkinter as tk
-except:
+import sys
+
+if sys.version_info.major == 2:
+	import Tkinter as tk
+	import tkMessageBox as pop_up
+	import tkFileDialog
+else:
     import Tkinter as tk
-
-try:
-    import tkMessageBox as pop_up
-except:
     import tkinter.tkMessageBox as pop_up
-
-import tkFileDialog
+    import tkinter.tkFileDialog as tkFileDialog
 
 import datetime
 
