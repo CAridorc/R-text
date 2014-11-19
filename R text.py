@@ -36,11 +36,7 @@ def _open():
     with open(filename) as f:
         main_text.delete("1.0", tk.END)
         main_text.insert(tk.INSERT, f.read(), "a")
-
-def list_files():
-    files = '\n'.join([file for file in glob.glob("*.txt")])
-    pop_up.showinfo("All the files","Down here you can see all the files you can open with this text editor:\n\n"+files)
-
+        
 
 def save():
     if not file_title.get():
@@ -94,7 +90,6 @@ root.wm_title("R Text")
 
 menubar = tk.Menu(root)
 menubar.add_command(label="Open", command=_open)
-menubar.add_command(label="List files", command=list_files)
 menubar.add_command(label="Save", command=save)
 menubar.add_command(label="Add signature", command=add_signature)
 menubar.add_command(label="Add date", command=add_date)
